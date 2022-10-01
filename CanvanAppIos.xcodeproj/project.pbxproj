@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63579EEB28E5A7A6009001CF /* CanvanBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63579EEA28E5A7A6009001CF /* CanvanBoard.swift */; };
 		63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */; };
 		63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7FB28E47A1A00391F72 /* ContentView.swift */; };
 		63E8F7FE28E47A1B00391F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E8F7FD28E47A1B00391F72 /* Assets.xcassets */; };
@@ -15,7 +14,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		63579EEA28E5A7A6009001CF /* CanvanBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanBoard.swift; sourceTree = "<group>"; };
 		63E8F7F628E47A1A00391F72 /* CanvanAppIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvanAppIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanAppIosApp.swift; sourceTree = "<group>"; };
 		63E8F7FB28E47A1A00391F72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,7 +35,6 @@
 		63579EE928E5A79A009001CF /* Mdoel */ = {
 			isa = PBXGroup;
 			children = (
-				63579EEA28E5A7A6009001CF /* CanvanBoard.swift */,
 			);
 			path = Mdoel;
 			sourceTree = "<group>";
@@ -150,7 +147,6 @@
 			files = (
 				63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */,
 				63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */,
-				63579EEB28E5A7A6009001CF /* CanvanBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct CanvanAppIosApp: App {
+    @StateObject var canvanModel:CanvanModel = CanvanModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(canvanModel)
         }
     }
 }
