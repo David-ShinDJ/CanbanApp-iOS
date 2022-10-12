@@ -3,25 +3,31 @@
 //  CanvanAppIos
 //
 //  Created by David_ADA on 2022/09/28.
-//
-
 import SwiftUI
 import UIKit
 import UniformTypeIdentifiers
 
-
 struct ContentView: View {
-    @State var searchText:String = "Search"
-    @EnvironmentObject var canvanModel:CanvanModel
+    @EnvironmentObject var contentViewModel:ContentViewModel
     @State private var showingSheet = false
+    @State private var doneCanvan = false
+    
+    let columns = [GridItem(.flexible())]
     var body: some View {NavigationView {
         ScrollView {
             HStack{
-                Text(canvanModel.canvanName)
-                    .font(.body)
-                    .opacity(0.5)
+                doneCanvan ? Text(contentViewModel.canvanModel.canvanName).font(.body) : Text("CanvanEmpty").font(.body)
                 Spacer()
             }
+            LazyVGrid(columns: columns,alignment: .center, content: {
+                ForEach(0...Int(contentViewModel.canvanModel.canvanNumber.rawValue), id: \.self) { index in
+                    if contentViewModel.canvanModel.canvanNumber.rawValue == 0 {
+                        Text("Make Canvan")
+                    } else {
+                        CanvanListView()
+                    }
+                }
+            })
         }
         .navigationTitle("CanvanApp")
         .navigationBarTitleDisplayMode(.inline)
@@ -31,29 +37,19 @@ struct ContentView: View {
                     showingSheet.toggle()
                 }
                 .sheet(isPresented: $showingSheet) {
-                    CanvanModalView()
+                    CanvanModalView(doneCanvan:$doneCanvan)
                         .presentationDetents([.medium]) //MARK: PopUp Modal Center 생성 변경필요!
                 }
             }
-            
         }
-        .searchable(text: $searchText,
-                    placement: .sidebar)
     }
-        
     }
 }
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
-
 
 struct CanvanModalView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var canvanModel:CanvanModel
+    @EnvironmentObject var contentViewModel:ContentViewModel
+    @Binding var doneCanvan:Bool
     
     enum CanvanNumber: Int, Identifiable {
         case One, Two, Three, Four, Five, Six, Seven, Eight, Nine
@@ -68,99 +64,116 @@ struct CanvanModalView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-                HStack {
-                    Button("Done") {
-                        self.presentationMode.wrappedValue.dismiss()
-                        canvanModel.printCanvanValue()
-                    }
-                    .disabled(canvanModel.canvanName.isEmpty)
-                    Spacer()
-                    Button("Cancel") {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
+            HStack {
+                Button("Done") {
+                    self.presentationMode.wrappedValue.dismiss()
+                    doneCanvan = true
+                }
+                .disabled(contentViewModel.canvanModel.canvanName.isEmpty)
+                Spacer()
+                Button("Cancel") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
-                HStack {
-                    Text("Name :")
-                    TextField(text: $canvanModel.canvanName) {
-                        Text("Name")
-                    }
+            HStack {
+                Text("Name :")
+                TextField(text: $contentViewModel.canvanModel.canvanName) {
+                    Text("Name")
                 }
-                HStack{
-                    Text("Cloumns :")
-                    Picker("Columns", selection: $canvanModel.canvanColums) {
-                        Text("1").tag(CanvanNumber.One)
-                        Text("2").tag(CanvanNumber.Two)
-                        Text("3").tag(CanvanNumber.Three)
-                        Text("4").tag(CanvanNumber.Four)
-                        Text("5").tag(CanvanNumber.Five)
-                        Text("6").tag(CanvanNumber.Six)
-                        Text("7").tag(CanvanNumber.Seven)
-                        Text("8").tag(CanvanNumber.Eight)
-                        Text("9").tag(CanvanNumber.Nine)
-                    }
+            }
+            HStack{
+                Text("Cloumns :")
+                Picker("Columns", selection: $contentViewModel.canvanModel.canvanNumber) {
+                    Text("1").tag(CanvanModel.CanvanNumber.One)
+                    Text("2").tag(CanvanModel.CanvanNumber.Two)
+                    Text("3").tag(CanvanModel.CanvanNumber.Three)
+                    Text("4").tag(CanvanModel.CanvanNumber.Four)
+                    Text("5").tag(CanvanModel.CanvanNumber.Five)
+                    Text("6").tag(CanvanModel.CanvanNumber.Six)
+                    Text("7").tag(CanvanModel.CanvanNumber.Seven)
+                    Text("8").tag(CanvanModel.CanvanNumber.Eight)
+                    Text("9").tag(CanvanModel.CanvanNumber.Nine)
                 }
-                HStack{
-                    Text("Theme :")
-                    Picker("Theme", selection: $canvanModel.canvanTheme) {
-                        Text("Red").tag(CanvanTheme.Red)
-                        Text("Orange").tag(CanvanTheme.Orange)
-                        Text("Yellow").tag(CanvanTheme.Yellow)
-                        Text("Green").tag(CanvanTheme.Green)
-                        Text("Blue").tag(CanvanTheme.Blue)
-                        Text("Indigo").tag(CanvanTheme.Indigo)
-                        Text("Purple").tag(CanvanTheme.Purple)
-                    }
+            }
+            HStack{
+                Text("Theme :")
+                Picker("Theme", selection: $contentViewModel.canvanModel.canvanTheme) {
+                    Text("Red").tag(CanvanModel.CanvanTheme.Red)
+                    Text("Orange").tag(CanvanModel.CanvanTheme.Orange)
+                    Text("Yellow").tag(CanvanModel.CanvanTheme.Yellow)
+                    Text("Green").tag(CanvanModel.CanvanTheme.Green)
+                    Text("Blue").tag(CanvanModel.CanvanTheme.Blue)
+                    Text("Indigo").tag(CanvanModel.CanvanTheme.Indigo)
+                    Text("Purple").tag(CanvanModel.CanvanTheme.Purple)
                 }
+            }
         }.padding()
-        
     }
 }
 
-// CanvanView GeometryReader 사용하기
-//struct RightView: View {
-//    var body: some View {
-//        GeometryReader { geometry in
-//            Rectangle()
-//                .path(in: CGRect(x: geometry.size.width/2, y: 0,
-//                                width: geometry.size.width / 2.0,
-//                                height: geometry.size.height / 2.0))
-//                .fill(Color.blue)
-//        }
-//    }
-//}
 
-
-class CanvanModel: ObservableObject {
-    
-    enum CanvanNumber: Int, Identifiable {
-        case One, Two, Three, Four, Five, Six, Seven, Eight, Nine
-        var id: Self { self }
-    }
-    
-    enum CanvanTheme: String, Identifiable {
-        case Red, Orange, Yellow, Green, Blue ,Indigo, Purple
-        var id: Self { self }
-    }
-    
-    @State private var canvanColumns:CanvanNumber = .One
-    @State private var canvanThemes:CanvanTheme = .Blue
-    @Published var canvanName:String = "Please Make a Canvan"
-    @Published var canvanColums:CanvanNumber = .One
-    @Published var canvanTheme:CanvanTheme = .Red
-    @Published var canvans:Canvan?
-    
-    func printCanvanValue() {
-        print(self.canvanName, self.canvanColums, self.canvanTheme, self.canvans)
-    }
+struct CanvanItem: Identifiable {
+    var id: String { list }
+    let list: String
 }
+struct CanvanListView: View {
+    @EnvironmentObject var contentViewModel:ContentViewModel
+    
+    @State var canvanTitle:String = "Title"
+    @State var canvanList:String = ""
+    @State var canvanLists:[String] = []
+    @State var textEditorHeight:Double = 20.0
+    @State var textEditorPressed:Bool = true
+    
+    @State var isPresented:Bool = false
+    
+    @State var addCanvanList:CanvanItem?
+    
+    let columns = [GridItem(.flexible())]
+    
+    var body: some View {
+        NavigationView{
+            ScrollView {
+                HStack(alignment: .center){
+                    Button {
+                        textEditorPressed = false
+                        print("Hello")
+                    } label: {
+                        Image(systemName: "pencil.circle.fill").resizable()
+                            .frame(width:30, height:30)
+                    }
+                    TextEditor(text: $canvanTitle).disabled(textEditorPressed).font(.title).frame(height:max(40,20))
 
-class Canvan {
-    let canvanTItle:String
-    var canvanList:[String]
-    
-    init(canvanTItle: String, canvanList: [String]) {
-        self.canvanTItle = canvanTItle
-        self.canvanList = canvanList
+                }
+                LazyVGrid(columns: columns) {
+                    ForEach(0..<canvanLists.count,id:\.self) { index in
+                        Text(canvanLists[index])
+                    }
+                }
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        addCanvanList = CanvanItem(list: "Hello")
+                        isPresented = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }.alert("List", isPresented: $isPresented, actions: {
+                        TextField("List", text: $canvanList)
+                        Button("Ok", action: {
+                            canvanLists.append(canvanList)
+                            canvanList = ""
+                            print(canvanLists)
+                        })
+                        Button("Cancel", role: .cancel, action: {
+            
+                        })
+                    }, message: {
+                        Text("Write List")
+                    })
+
+                }
+            }
+        }
     }
-    
 }

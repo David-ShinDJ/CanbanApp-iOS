@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		634B8C6E28F18798002A76AC /* CanvanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B8C6D28F18798002A76AC /* CanvanModel.swift */; };
+		63E2BCCE28F53177001E8A91 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */; };
 		63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */; };
 		63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7FB28E47A1A00391F72 /* ContentView.swift */; };
 		63E8F7FE28E47A1B00391F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E8F7FD28E47A1B00391F72 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		634B8C6D28F18798002A76AC /* CanvanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanModel.swift; sourceTree = "<group>"; };
+		63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		63E8F7F628E47A1A00391F72 /* CanvanAppIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvanAppIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanAppIosApp.swift; sourceTree = "<group>"; };
 		63E8F7FB28E47A1A00391F72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +39,7 @@
 		63579EE928E5A79A009001CF /* Mdoel */ = {
 			isa = PBXGroup;
 			children = (
+				634B8C6D28F18798002A76AC /* CanvanModel.swift */,
 			);
 			path = Mdoel;
 			sourceTree = "<group>";
@@ -61,6 +66,7 @@
 				63579EE928E5A79A009001CF /* Mdoel */,
 				63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */,
 				63E8F7FB28E47A1A00391F72 /* ContentView.swift */,
+				63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */,
 				63E8F7FD28E47A1B00391F72 /* Assets.xcassets */,
 				63E8F7FF28E47A1B00391F72 /* Preview Content */,
 			);
@@ -145,8 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63E2BCCE28F53177001E8A91 /* ContentViewModel.swift in Sources */,
 				63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */,
 				63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */,
+				634B8C6E28F18798002A76AC /* CanvanModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
