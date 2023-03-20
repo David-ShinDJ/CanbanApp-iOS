@@ -27,3 +27,22 @@ class CanvanModel {
         var id: Self { self }
     }
 }
+
+
+
+
+class Canvan {
+    
+    let title: String
+    let description: String
+    var priority: Int
+    let date: Date
+    
+    init(title:String, description:String, priority:Int, date:Date) {
+        self.title = title
+        self.description = description
+        self.priority = priority
+        self.date = date
+    }
+
+}

@@ -14,3 +14,5 @@ class ContentViewModel: ObservableObject {
         print(self.canvanModel.canvanNumber, self.canvanModel.canvanTheme)
     }
 }
+
+
