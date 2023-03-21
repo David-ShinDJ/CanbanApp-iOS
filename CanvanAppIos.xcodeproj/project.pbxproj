@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		6310E3DB29C8846800A5FE5C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310E3DA29C8846800A5FE5C /* CalendarView.swift */; };
 		6310E3DD29C88C0A00A5FE5C /* CanvanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310E3DC29C88C0900A5FE5C /* CanvanView.swift */; };
-		6310E3DF29C8921600A5FE5C /* CanvanPastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310E3DE29C8921600A5FE5C /* CanvanPastView.swift */; };
 		634B8C6E28F18798002A76AC /* CanvanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B8C6D28F18798002A76AC /* CanvanModel.swift */; };
+		63C61C7B29C992EE0080A235 /* BacklogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C61C7A29C992EE0080A235 /* BacklogView.swift */; };
+		63C61C7D29C993C20080A235 /* InProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C61C7C29C993C20080A235 /* InProgressView.swift */; };
+		63C61C7F29C998960080A235 /* CanvanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C61C7E29C998960080A235 /* CanvanDetailView.swift */; };
 		63E2BCCE28F53177001E8A91 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */; };
 		63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */; };
 		63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7FB28E47A1A00391F72 /* ContentView.swift */; };
@@ -21,8 +23,10 @@
 /* Begin PBXFileReference section */
 		6310E3DA29C8846800A5FE5C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		6310E3DC29C88C0900A5FE5C /* CanvanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanView.swift; sourceTree = "<group>"; };
-		6310E3DE29C8921600A5FE5C /* CanvanPastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanPastView.swift; sourceTree = "<group>"; };
 		634B8C6D28F18798002A76AC /* CanvanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanModel.swift; sourceTree = "<group>"; };
+		63C61C7A29C992EE0080A235 /* BacklogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacklogView.swift; sourceTree = "<group>"; };
+		63C61C7C29C993C20080A235 /* InProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressView.swift; sourceTree = "<group>"; };
+		63C61C7E29C998960080A235 /* CanvanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanDetailView.swift; sourceTree = "<group>"; };
 		63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		63E8F7F628E47A1A00391F72 /* CanvanAppIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvanAppIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanAppIosApp.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */,
+				63C61C7A29C992EE0080A235 /* BacklogView.swift */,
 				63E8F7FB28E47A1A00391F72 /* ContentView.swift */,
 				63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */,
 				634B8C6D28F18798002A76AC /* CanvanModel.swift */,
@@ -69,7 +74,8 @@
 				63E8F7FF28E47A1B00391F72 /* Preview Content */,
 				6310E3DA29C8846800A5FE5C /* CalendarView.swift */,
 				6310E3DC29C88C0900A5FE5C /* CanvanView.swift */,
-				6310E3DE29C8921600A5FE5C /* CanvanPastView.swift */,
+				63C61C7C29C993C20080A235 /* InProgressView.swift */,
+				63C61C7E29C998960080A235 /* CanvanDetailView.swift */,
 			);
 			path = CanvanAppIos;
 			sourceTree = "<group>";
@@ -154,10 +160,12 @@
 			files = (
 				6310E3DB29C8846800A5FE5C /* CalendarView.swift in Sources */,
 				63E2BCCE28F53177001E8A91 /* ContentViewModel.swift in Sources */,
+				63C61C7B29C992EE0080A235 /* BacklogView.swift in Sources */,
 				63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */,
+				63C61C7F29C998960080A235 /* CanvanDetailView.swift in Sources */,
 				63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */,
-				6310E3DF29C8921600A5FE5C /* CanvanPastView.swift in Sources */,
 				634B8C6E28F18798002A76AC /* CanvanModel.swift in Sources */,
+				63C61C7D29C993C20080A235 /* InProgressView.swift in Sources */,
 				6310E3DD29C88C0A00A5FE5C /* CanvanView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

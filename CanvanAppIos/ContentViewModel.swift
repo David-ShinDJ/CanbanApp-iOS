@@ -8,10 +8,12 @@
 import Foundation
 class ContentViewModel: ObservableObject {
     
-    @Published var canvanModel:CanvanModel = CanvanModel(canvanName: "MakeCanvanName", canvanNumber: .One, canvanTheme: .Red)
+    @Published var canvanItems:[Canvan] = []
+    @Published var canvanTitle:String = ""
+    @Published var canvanDescription:String = ""
     
-    func printCanvanValue() {
-        print(self.canvanModel.canvanNumber, self.canvanModel.canvanTheme)
+    func addCanvan(canvan:Canvan) {
+        canvanItems.append(canvan)
     }
 }
 

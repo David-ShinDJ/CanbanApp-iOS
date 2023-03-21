@@ -8,34 +8,65 @@ import Foundation
 import UniformTypeIdentifiers
 
 let canvanSample:Canvan = Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date())
-
-struct FileInfo: Identifiable {
-    var id: String { name }
-    let name: String
-    let fileType: UTType
-}
-
+let canvanSamples:[Canvan] = [
+    Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date()),
+    Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date()),
+    Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date()),
+    Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date())
+]
 struct ContentView: View {
+    
     @State var showingAlert:Bool = false
-    @State var alertDetails: FileInfo?
+    
+    @StateObject var viewModel:ContentViewModel = ContentViewModel()
+    @State private var offset = CGSize.zero
+    
     var body: some View {
         NavigationView {
             VStack {
-                CalendarView()
-                CanvanView(canvan: canvanSample)
-            }.toolbar {
-                ToolbarItem(id: "addCanvan", placement: .navigationBarTrailing) {
+                ForEach(0..<viewModel.canvanItems.count, id: \.self) {
+                    index in
+                    NavigationLink {
+                        CanvanDetailView(canvan: viewModel.canvanItems[index])
+                    } label: {
+                        HStack {
+                            Text(viewModel.canvanItems[index].title)
+                            Spacer()
+                            Text("\(viewModel.canvanItems[index].priority)")
+                        }
+                        .background(.blue)
+                        .offset(offset)
+                            .gesture(
+                              DragGesture()
+                                .onChanged { gesture in
+                                  offset = gesture.translation
+                                }
+                                .onEnded { gesture in
+                                  offset = .zero
+                                }
+                            )
+                    }
+                    
+                }
+            }
+            .toolbar {
+                ToolbarItem(id:"addCanvan", placement: .navigationBarTrailing) {
                     Button("Add") {
-                        showingAlert.toggle()
-                    }
-                    .alert(isPresented: $showingAlert) { details in
-                        Alert(title: Text("Import Complete"),
-                              message: Text("""
-                                Imported \(details.name) \n File
-                                type: \(details.fileType.description).
-                                """),
-                              dismissButton: .default(Text("Dismiss")))
-                    }
+                        showingAlert = true
+                    }.alert("Title", isPresented: $showingAlert, actions: {
+                        // Any view other than Button would be ignored
+                        TextField("TitleField", text: $viewModel.canvanTitle)
+                        TextField("DesciprtionField", text:$viewModel.canvanDescription)
+                        Button("칸반생성") {
+                            let newCanvan = Canvan(title: viewModel.canvanTitle, description: viewModel.canvanDescription, priority: 1, date: Date())
+                            viewModel.addCanvan(canvan: newCanvan)
+                        }
+                        Button("취소") {
+                            
+                        }
+                    }, message: {
+                        // Any view other than Text would be ignored
+                    })
                 }
             }
         }
