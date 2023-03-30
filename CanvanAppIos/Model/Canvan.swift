@@ -9,19 +9,23 @@ import Foundation
 
 class Canvan: Identifiable {
     
+    enum Field: String {
+        case BackLog
+        case InProgree
+        case Done
+    }
     
     let title: String
     let description: String
     var priority: Int
-    var canvanType: AddType
+    var field: Field
     let date: Date
     
-    init(title:String, description:String, priority:Int, date:Date) {
+    init(title:String, description:String, priority:Int, field:Field, date:Date) {
         self.title = title
         self.description = description
         self.priority = priority
-        self.canvanType = .BackLog
-        print(self.canvanType.rawValue)
+        self.field = field
         self.date = date
     }
 

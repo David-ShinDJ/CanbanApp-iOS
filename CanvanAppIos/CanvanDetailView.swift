@@ -34,7 +34,7 @@ struct CanvanDetailView: View {
 }
 
 struct CanvanDetailView_Previews: PreviewProvider {
-    static let canvanSample = Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date())
+    static let canvanSample = Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, field:.BackLog,date: Date())
     static var previews: some View {
         CanvanDetailView(canvan: canvanSample)
     }

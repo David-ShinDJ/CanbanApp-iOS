@@ -8,15 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6310E3DB29C8846800A5FE5C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310E3DA29C8846800A5FE5C /* CalendarView.swift */; };
-		6310E3DD29C88C0A00A5FE5C /* CanvanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310E3DC29C88C0900A5FE5C /* CanvanView.swift */; };
-		634B8C6E28F18798002A76AC /* CanvanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B8C6D28F18798002A76AC /* CanvanModel.swift */; };
-		63931D9929CDA51E000EC2FF /* UpNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63931D9829CDA51E000EC2FF /* UpNextView.swift */; };
-		63931D9B29CDA573000EC2FF /* OnHoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63931D9A29CDA573000EC2FF /* OnHoldView.swift */; };
-		63931D9D29CDA595000EC2FF /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63931D9C29CDA595000EC2FF /* DoneView.swift */; };
+		634B8C6E28F18798002A76AC /* Canvan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B8C6D28F18798002A76AC /* Canvan.swift */; };
+		637AD05D29D550C40048F69C /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637AD05C29D550C40048F69C /* DoneView.swift */; };
 		63C61C7B29C992EE0080A235 /* BacklogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C61C7A29C992EE0080A235 /* BacklogView.swift */; };
 		63C61C7D29C993C20080A235 /* InProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C61C7C29C993C20080A235 /* InProgressView.swift */; };
 		63C61C7F29C998960080A235 /* CanvanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C61C7E29C998960080A235 /* CanvanDetailView.swift */; };
-		63E2BCCE28F53177001E8A91 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */; };
+		63E2BCCE28F53177001E8A91 /* CanvanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E2BCCD28F53177001E8A91 /* CanvanController.swift */; };
 		63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */; };
 		63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8F7FB28E47A1A00391F72 /* ContentView.swift */; };
 		63E8F7FE28E47A1B00391F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E8F7FD28E47A1B00391F72 /* Assets.xcassets */; };
@@ -25,15 +22,12 @@
 
 /* Begin PBXFileReference section */
 		6310E3DA29C8846800A5FE5C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		6310E3DC29C88C0900A5FE5C /* CanvanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanView.swift; sourceTree = "<group>"; };
-		634B8C6D28F18798002A76AC /* CanvanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanModel.swift; sourceTree = "<group>"; };
-		63931D9829CDA51E000EC2FF /* UpNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpNextView.swift; sourceTree = "<group>"; };
-		63931D9A29CDA573000EC2FF /* OnHoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnHoldView.swift; sourceTree = "<group>"; };
-		63931D9C29CDA595000EC2FF /* DoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
+		634B8C6D28F18798002A76AC /* Canvan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvan.swift; sourceTree = "<group>"; };
+		637AD05C29D550C40048F69C /* DoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
 		63C61C7A29C992EE0080A235 /* BacklogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacklogView.swift; sourceTree = "<group>"; };
 		63C61C7C29C993C20080A235 /* InProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressView.swift; sourceTree = "<group>"; };
 		63C61C7E29C998960080A235 /* CanvanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanDetailView.swift; sourceTree = "<group>"; };
-		63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		63E2BCCD28F53177001E8A91 /* CanvanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanController.swift; sourceTree = "<group>"; };
 		63E8F7F628E47A1A00391F72 /* CanvanAppIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvanAppIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvanAppIosApp.swift; sourceTree = "<group>"; };
 		63E8F7FB28E47A1A00391F72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +46,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		637AD05A29D52C2E0048F69C /* CanvanField */ = {
+			isa = PBXGroup;
+			children = (
+				63C61C7A29C992EE0080A235 /* BacklogView.swift */,
+				63C61C7C29C993C20080A235 /* InProgressView.swift */,
+				637AD05C29D550C40048F69C /* DoneView.swift */,
+			);
+			path = CanvanField;
+			sourceTree = "<group>";
+		};
+		637AD05B29D52C740048F69C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				634B8C6D28F18798002A76AC /* Canvan.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		63E8F7ED28E47A1A00391F72 = {
 			isa = PBXGroup;
 			children = (
@@ -71,20 +83,15 @@
 		63E8F7F828E47A1A00391F72 /* CanvanAppIos */ = {
 			isa = PBXGroup;
 			children = (
+				637AD05B29D52C740048F69C /* Model */,
+				637AD05A29D52C2E0048F69C /* CanvanField */,
 				63E8F7F928E47A1A00391F72 /* CanvanAppIosApp.swift */,
-				63C61C7A29C992EE0080A235 /* BacklogView.swift */,
+				63C61C7E29C998960080A235 /* CanvanDetailView.swift */,
 				63E8F7FB28E47A1A00391F72 /* ContentView.swift */,
-				63E2BCCD28F53177001E8A91 /* ContentViewModel.swift */,
-				634B8C6D28F18798002A76AC /* CanvanModel.swift */,
+				63E2BCCD28F53177001E8A91 /* CanvanController.swift */,
+				6310E3DA29C8846800A5FE5C /* CalendarView.swift */,
 				63E8F7FD28E47A1B00391F72 /* Assets.xcassets */,
 				63E8F7FF28E47A1B00391F72 /* Preview Content */,
-				6310E3DA29C8846800A5FE5C /* CalendarView.swift */,
-				6310E3DC29C88C0900A5FE5C /* CanvanView.swift */,
-				63C61C7C29C993C20080A235 /* InProgressView.swift */,
-				63C61C7E29C998960080A235 /* CanvanDetailView.swift */,
-				63931D9829CDA51E000EC2FF /* UpNextView.swift */,
-				63931D9A29CDA573000EC2FF /* OnHoldView.swift */,
-				63931D9C29CDA595000EC2FF /* DoneView.swift */,
 			);
 			path = CanvanAppIos;
 			sourceTree = "<group>";
@@ -168,17 +175,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6310E3DB29C8846800A5FE5C /* CalendarView.swift in Sources */,
-				63E2BCCE28F53177001E8A91 /* ContentViewModel.swift in Sources */,
-				63931D9D29CDA595000EC2FF /* DoneView.swift in Sources */,
+				63E2BCCE28F53177001E8A91 /* CanvanController.swift in Sources */,
 				63C61C7B29C992EE0080A235 /* BacklogView.swift in Sources */,
 				63E8F7FC28E47A1A00391F72 /* ContentView.swift in Sources */,
 				63C61C7F29C998960080A235 /* CanvanDetailView.swift in Sources */,
+				637AD05D29D550C40048F69C /* DoneView.swift in Sources */,
 				63E8F7FA28E47A1A00391F72 /* CanvanAppIosApp.swift in Sources */,
-				634B8C6E28F18798002A76AC /* CanvanModel.swift in Sources */,
-				63931D9B29CDA573000EC2FF /* OnHoldView.swift in Sources */,
+				634B8C6E28F18798002A76AC /* Canvan.swift in Sources */,
 				63C61C7D29C993C20080A235 /* InProgressView.swift in Sources */,
-				63931D9929CDA51E000EC2FF /* UpNextView.swift in Sources */,
-				6310E3DD29C88C0A00A5FE5C /* CanvanView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
