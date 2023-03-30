@@ -7,6 +7,14 @@ import SwiftUI
 import Foundation
 import UniformTypeIdentifiers
 
+enum AddType: String {
+    case BackLog
+    case UpNext
+    case InProgress
+    case OnHold
+    case Done
+}
+
 let canvanSample:Canvan = Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date())
 let canvanSamples:[Canvan] = [
     Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date()),
@@ -15,39 +23,32 @@ let canvanSamples:[Canvan] = [
     Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date())
 ]
 struct ContentView: View {
-    
+    @State var addType:AddType = .BackLog
     @State var showingAlert:Bool = false
-    
     @StateObject var viewModel:ContentViewModel = ContentViewModel()
     @State private var offset = CGSize.zero
     
     var body: some View {
         NavigationView {
-            VStack {
-                ForEach(0..<viewModel.canvanItems.count, id: \.self) {
-                    index in
-                    NavigationLink {
-                        CanvanDetailView(canvan: viewModel.canvanItems[index])
-                    } label: {
-                        HStack {
-                            Text(viewModel.canvanItems[index].title)
-                            Spacer()
-                            Text("\(viewModel.canvanItems[index].priority)")
-                        }
-                        .background(.blue)
-                        .offset(offset)
-                            .gesture(
-                              DragGesture()
-                                .onChanged { gesture in
-                                  offset = gesture.translation
-                                }
-                                .onEnded { gesture in
-                                  offset = .zero
-                                }
-                            )
+            ScrollView {
+                BacklogView(viewModel: viewModel)
+                    .frame(maxHeight:200)
+                    .border(.red)
+                    .onTapGesture {
+                        
                     }
-                    
-                }
+                UpNextView(viewModel: viewModel)
+                    .frame(maxHeight:200)
+                    .border(.orange)
+                InProgressView(viewModel: viewModel)
+                    .frame(maxHeight:200)
+                    .border(.yellow)
+                OnHoldView(viewModel: viewModel)
+                    .frame(maxHeight:200)
+                    .border(.green)
+                DoneView(viewModel: viewModel)
+                    .frame(maxHeight:200)
+                    .border(.blue)
             }
             .toolbar {
                 ToolbarItem(id:"addCanvan", placement: .navigationBarTrailing) {

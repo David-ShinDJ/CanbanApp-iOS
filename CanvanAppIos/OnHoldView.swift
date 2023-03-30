@@ -1,33 +1,30 @@
 //
-//  BacklogView.swift
+//  OnHoldView.swift
 //  CanvanAppIos
 //
-//  Created by David_ADA on 2023/03/21.
+//  Created by David_ADA on 2023/03/24.
 //
 
 import Foundation
 import SwiftUI
 
-
-// MARK: ContentView 칸반생성시 BacklogView 업데이트가 되지않는 이슈 
-struct BacklogView: View {
+struct OnHoldView: View {
     @StateObject var viewModel:ContentViewModel
     @State private var offset = CGSize.zero
-    @State private var canvans:[Canvan] = []
     
     var body: some View {
         NavigationView {
             VStack{
-                Text("BackLog")
-                ForEach(0..<canvans.count, id: \.self) {
+                Text("OnHoldView")
+                ForEach(0..<viewModel.canvanItems.count, id: \.self) {
                     index in
                     NavigationLink {
-                        CanvanDetailView(canvan: canvans[index])
+                        CanvanDetailView(canvan: viewModel.canvanItems[index])
                     } label: {
                         HStack {
-                            Text(canvans[index].title)
+                            Text(viewModel.canvanItems[index].title)
                             Spacer()
-                            Text("\(canvans[index].priority)")
+                            Text("\(viewModel.canvanItems[index].priority)")
                         }.offset(offset)
                             .gesture(
                               DragGesture()
@@ -41,9 +38,6 @@ struct BacklogView: View {
                     }
                     
                 }
-            }
-            .onAppear {
-                self.canvans = viewModel.backlogItems
             }
         }
     }

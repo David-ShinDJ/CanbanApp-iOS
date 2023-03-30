@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+
 struct CanvanAppIosApp: App {
     var body: some Scene {
         WindowGroup {
