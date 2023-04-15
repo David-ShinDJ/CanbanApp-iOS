@@ -7,45 +7,59 @@
 
 import Foundation
 class CanvanController: ObservableObject {
-    
     @Published var canvanItems:[Canvan] = []
-    @Published var selectedCanvan:Canvan? = nil
-    @Published var canvanTitle:String = ""
-    @Published var canvanDescription:String = ""
-    
-    func addCanvan(canvan:Canvan) {
-        canvanItems.append(canvan)
-    }
-    var backlogCanvans: [Canvan] {
-        canvanItems.filter { Canvan in
-            Canvan.field == .BackLog
-        }
-    }
-    var inprogressCanvans: [Canvan] {
-        canvanItems.filter { Canvan in
-            Canvan.field == .InProgree
-        }
+    @Published var index:Int? = Int()
+    init() {
+        readCanvan()
     }
     
-    var doneCanvans:[Canvan] {
-        canvanItems.filter { Canvan in
-            Canvan.field == .Done
-        }
+    // CRUD Canvan
+    
+    // Create Canvan
+    func createCanvan(title:String, description:String) {
+        let newCanvan = Canvan(id: UUID(), title: title, description: description, field: .Backlog, isSelected: true, priority: 0, date: Date())
+        self.canvanItems.append(newCanvan)
+        UserDefaults.standard.setCanvansToDefault(canvanItems, forKey: "Canvans")
+        
     }
     
-    func selectCanvan(_ canvan:Canvan) {
-        self.selectedCanvan = canvan
-    }
-    
-    func nextFieldCanvan() {
-        if self.selectedCanvan?.field == .BackLog {
-            self.selectedCanvan?.field = .InProgree
-        } else if self.selectedCanvan?.field == .InProgree {
-            self.selectedCanvan?.field = .Done
+    func readCanvan() {
+        if let datas = UserDefaults.standard.setDefaultToCanvans(dataType: Canvan.self, key: "Canvans") {
+            self.canvanItems = datas
         } else {
-            self.selectedCanvan?.field = .Done
+            self.canvanItems = []
         }
     }
+    
+    func setCanvan(_ id:UUID) {
+        self.index = self.canvanItems.firstIndex(where: { Canvan in
+            Canvan.id == id
+        })
+    }
+    // Update 방식 Canvan Id 값으로 Array 필터링 사용해서 업데이트
+    
+    func updateCanvan(description:String, priority:Int) {
+        if self.index == nil {
+            print("업데이트할 칸반을 찾지 못했습니다")
+        } else {
+            self.canvanItems[self.index!].description = description
+            self.canvanItems[self.index!].priority = priority
+            UserDefaults.standard.setCanvansToDefault(canvanItems, forKey: "Canvans")
+        }
+        
+    }
+    
+    func deleteCanvan() {
+        if self.index == nil {
+            print("삭제할 칸반을 찾지못했습니다")
+        } else {
+            print("삭제 : \(canvanItems[self.index!].title)")
+            self.canvanItems.remove(at: self.index!)
+            UserDefaults.standard.setCanvansToDefault(canvanItems, forKey: "Canvans")
+        }
+    }
+    
+    
 }
 
 
