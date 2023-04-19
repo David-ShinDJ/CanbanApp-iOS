@@ -10,10 +10,18 @@ import UniformTypeIdentifiers
 // CanvanField 같은 칸반 모델을 공유하고 그 모델은 Type 존재해서 칸반을 이동시킬떄 타입이 변경된다
 
 struct ContentView: View {
-    @State var showingAlert:Bool = false
     @StateObject var canvanController:CanvanController = CanvanController()
+    
     var body: some View {
-        BacklogView(canvanController: canvanController)
+        VStack {
+   
+                BacklogView(canvanController: canvanController)
+                    .navigationBarTitleDisplayMode(.inline)
+                InProgressView(canvanController: canvanController)
+                    .navigationBarTitleDisplayMode(.inline)
+                DoneView(canvanController: canvanController)
+                    .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 

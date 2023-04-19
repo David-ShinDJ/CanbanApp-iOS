@@ -8,16 +8,19 @@
 import Foundation
 class CanvanController: ObservableObject {
     @Published var canvanItems:[Canvan] = []
+    
     @Published var index:Int? = Int()
+    
     init() {
         readCanvan()
     }
     
     // CRUD Canvan
     
+    
     // Create Canvan
-    func createCanvan(title:String, description:String) {
-        let newCanvan = Canvan(id: UUID(), title: title, description: description, field: .Backlog, isSelected: true, priority: 0, date: Date())
+    func createCanvan(title:String, description:String, field:Field) {
+        let newCanvan = Canvan(id: UUID(), title: title, description: description, field: field, isSelected: true, priority: 0, date: Date())
         self.canvanItems.append(newCanvan)
         UserDefaults.standard.setCanvansToDefault(canvanItems, forKey: "Canvans")
         
@@ -36,7 +39,7 @@ class CanvanController: ObservableObject {
             Canvan.id == id
         })
     }
-    // Update 방식 Canvan Id 값으로 Array 필터링 사용해서 업데이트
+    // Update 방식 self.index 칸반Array Index Number 저장
     
     func updateCanvan(description:String, priority:Int) {
         if self.index == nil {
@@ -60,6 +63,46 @@ class CanvanController: ObservableObject {
     }
     
     
+    
+    // Field 값에 따른 Canvans 분류
+    func backlogCanvans() -> [Canvan] {
+        self.canvanItems.filter {$0.field == .Backlog}
+    }
+    
+    func inprogressCanvans() -> [Canvan] {
+        self.canvanItems.filter {$0.field == .Inprogress }
+    }
+    
+    func DoneCanvans() -> [Canvan] {
+        self.canvanItems.filter {$0.field == .Done }
+    }
+    
+    func nextCanvan() {
+        if self.index == nil {
+            print("선택된 칸반이 없습니다")
+            return
+        }
+        if self.canvanItems[self.index!].field == .Backlog {
+            self.canvanItems[self.index!].field = .Inprogress
+        } else {
+            self.canvanItems[self.index!].field = .Done
+        }
+    }
+    
+    func previousCanvan() {
+        if self.index == nil {
+            print("선택된 칸반이 없습니다")
+            return
+        }
+        
+        if self.canvanItems[self.index!].field == .Inprogress {
+            self.canvanItems[self.index!].field = .Backlog
+        } else {
+            self.canvanItems[self.index!].field = .Inprogress
+        }
+    }
+    
+    // 실시간 동기화문제 @Publisehd 업데이트 되면 View 반영이 바로 가능하게 만들기..
 }
 
 

@@ -22,26 +22,29 @@ struct BacklogView: View {
     var body: some View {
         NavigationView {
             VStack{
-                ForEach(0..<canvanController.canvanItems.count, id: \.self) {
-                    index in
-                    NavigationLink {
-                        CanvanDetailView(canvan: canvanController.canvanItems[index], canvanController: canvanController)
-                    } label: {
-                        HStack(alignment: .center) {
-                            Text(canvanController.canvanItems[index].title)
-                            Text("\(canvanController.canvanItems[index].priority)")
+                ScrollView{
+                    ForEach(0..<canvanController.backlogCanvans().count, id: \.self) {
+                        index in
+                        HStack {
+                            Text(canvanController.backlogCanvans()[index].title)
+                            Text("\(canvanController.backlogCanvans()[index].priority)")
                         }
+                        .foregroundColor(canvanController.backlogCanvans()[index].isSelected ? .red : .black)
+
                     }
                 }
-            }.toolbar {
-                ToolbarItem(id: "Add", placement: .navigationBarTrailing) {
-                    Button("Add") {
+            }
+            .navigationTitle("BackLog")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(id: "Add", placement: .bottomBar) {
+                    Button("+ BackLog 추가하기") {
                         showingAlert = true
                     }.alert("Title", isPresented: $showingAlert) {
                         TextField("TitleField", text: $newTitle)
                         TextField("DescriptionField", text: $newDescription)
                         Button("칸반생성") {
-                            canvanController.createCanvan(title: self.newTitle, description: self.newDescription)
+                            canvanController.createCanvan(title: self.newTitle, description: self.newDescription, field: .Backlog)
                             newTitle = ""
                             newDescription = ""
                         }
@@ -55,10 +58,3 @@ struct BacklogView: View {
     }
 }
 
-
-struct BacklogView_Previews: PreviewProvider {
-    @StateObject static var staticCanvanController:CanvanController = CanvanController()
-    static var previews: some View {
-        BacklogView(canvanController:staticCanvanController )
-    }
-}
