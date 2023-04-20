@@ -14,47 +14,53 @@ import SwiftUI
 struct BacklogView: View {
     
     @StateObject var canvanController:CanvanController
-    @State var newTitle:String = ""
-    @State var newDescription:String = ""
-    @State var canvanIsSelected:Bool = false
-    @State var showingAlert:Bool = false
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack(){
                 ScrollView{
                     ForEach(0..<canvanController.backlogCanvans().count, id: \.self) {
                         index in
                         HStack {
                             Text(canvanController.backlogCanvans()[index].title)
-                            Text("\(canvanController.backlogCanvans()[index].priority)")
+                                .bold()
+                            NavigationLink {
+                                CanvanDetailView(canvan: canvanController.backlogCanvans()[index], canvanController: canvanController)
+                            } label: {
+                                Image(systemName: "info.bubble")
+                                    .foregroundColor(.black)
+                            }
                         }
-                        .foregroundColor(canvanController.backlogCanvans()[index].isSelected ? .red : .black)
-
+                        .padding()
+                        .background(canvanController.backlogCanvans()[index].isSelected ? .cyan : .gray)
+                        .border(canvanController.backlogCanvans()[index].isSelected ? .cyan : .gray , width: 2)
+                        .foregroundColor(canvanController.backlogCanvans()[index].priority == 0 ? .black : .red)
+                        .cornerRadius(10)
+                        .aspectRatio(1.0,contentMode: .fit)
+                        .onTapGesture {
+                            if canvanController.index != nil {
+                                canvanController.canvanItems[self.canvanController.index!].isSelected = false
+                            }
+                            canvanController.setCanvan(canvanController.backlogCanvans()[index].id)
+                            canvanController.canvanItems[self.canvanController.index!].isSelected = true
+                            print(canvanController.index!)
+                        }
                     }
                 }
+            }
+            .onAppear {
+                canvanController.index = nil
             }
             .navigationTitle("BackLog")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(id: "Add", placement: .bottomBar) {
-                    Button("+ BackLog 추가하기") {
-                        showingAlert = true
-                    }.alert("Title", isPresented: $showingAlert) {
-                        TextField("TitleField", text: $newTitle)
-                        TextField("DescriptionField", text: $newDescription)
-                        Button("칸반생성") {
-                            canvanController.createCanvan(title: self.newTitle, description: self.newDescription, field: .Backlog)
-                            newTitle = ""
-                            newDescription = ""
-                        }
-                        Button("취소") {
-                            print("취소눌러짐")
+                ToolbarItem(id: "CanvanOption", placement: .bottomBar) {
+                        Button("Next") {
+                            canvanController.nextCanvan()
                         }
                     }
                 }
             }
         }
     }
-}
 

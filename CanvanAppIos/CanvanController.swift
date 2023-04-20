@@ -20,7 +20,7 @@ class CanvanController: ObservableObject {
     
     // Create Canvan
     func createCanvan(title:String, description:String, field:Field) {
-        let newCanvan = Canvan(id: UUID(), title: title, description: description, field: field, isSelected: true, priority: 0, date: Date())
+        let newCanvan = Canvan(id: UUID(), title: title, description: description, field: field, isSelected: false, priority: 0, date: Date())
         self.canvanItems.append(newCanvan)
         UserDefaults.standard.setCanvansToDefault(canvanItems, forKey: "Canvans")
         
@@ -84,9 +84,11 @@ class CanvanController: ObservableObject {
         }
         if self.canvanItems[self.index!].field == .Backlog {
             self.canvanItems[self.index!].field = .Inprogress
+            
         } else {
             self.canvanItems[self.index!].field = .Done
         }
+        UserDefaults.standard.setCanvansToDefault(canvanItems, forKey: "Canvans")
     }
     
     func previousCanvan() {
@@ -100,9 +102,13 @@ class CanvanController: ObservableObject {
         } else {
             self.canvanItems[self.index!].field = .Inprogress
         }
+        UserDefaults.standard.setCanvansToDefault(canvanItems, forKey: "Canvans")
     }
     
     // 실시간 동기화문제 @Publisehd 업데이트 되면 View 반영이 바로 가능하게 만들기..
+    
+    // Canvan Select
+    
 }
 
 

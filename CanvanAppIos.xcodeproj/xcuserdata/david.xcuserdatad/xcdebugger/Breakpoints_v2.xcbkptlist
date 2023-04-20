@@ -34,6 +34,38 @@
             endingLineNumber = "23"
             landmarkName = "bounds"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "979B1487-ACBF-42CE-BA8B-EB21F648865E - 4fafe16ccf6f2c53"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CanvanAppIos.CalendarView.bounds.getter : Swift.Range&lt;Foundation.Date&gt;"
+                  moduleName = "CanvanAppIos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/david/Root/ProjectApp/ToyProject/CanvanAppIos/CanvanAppIos/CalendarView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "1344">
+               </Location>
+               <Location
+                  uuid = "979B1487-ACBF-42CE-BA8B-EB21F648865E - 4fafe16ccf6f2c53"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CanvanAppIos.CalendarView.bounds.getter : Swift.Range&lt;Foundation.Date&gt;"
+                  moduleName = "CanvanAppIos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/david/Root/ProjectApp/ToyProject/CanvanAppIos/CanvanAppIos/CalendarView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "1732">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
