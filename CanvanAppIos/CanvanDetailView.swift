@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CanvanDetailView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let canvan:Canvan
     
@@ -21,43 +22,47 @@ struct CanvanDetailView: View {
     @State var newPriority:Int = 0
     @StateObject var canvanController:CanvanController
     let step = 1
-    let range = 0...3
+    let range = 0...1
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                HStack {
-                    Spacer()
-                    Text(canvan.title)
-                        .font(.largeTitle)
-                        .foregroundColor(.blue)
-                        .padding()
-                    Spacer()
-                }
-                TextEditor(text: $newDescription)
-                Spacer()
-                HStack {
-                    Spacer()
-                    Stepper(value: $newPriority,
-                            in: range,
-                            step: step) {
-                        Text("우선순위 \(newPriority)")
+                ScrollView {
+                    HStack {
+                        Spacer()
+                        Text(canvan.title)
+                            .font(.largeTitle)
+                            .foregroundColor(.blue)
+                            .padding()
+                        Spacer()
                     }
-                        .padding(10)
-                    Text("생성날짜:\(dateString)")
-                        .font(.headline)
+                    TextEditor(text: $newDescription)
                     Spacer()
+                    HStack {
+                        Spacer()
+                        Stepper(value: $newPriority,
+                                in: range,
+                                step: step) {
+                            Text("우선순위 \(newPriority)")
+                        }
+                            .padding(10)
+                        Text("생성날짜:\(dateString)")
+                            .font(.headline)
+                        Spacer()
+                    }
                 }
             }
             .toolbar {
                 ToolbarItem(id: "Update",placement: .bottomBar) {
                     Button("Update") {
                         self.canvanController.updateCanvan(description: newDescription, priority: newPriority)
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                 }
                 ToolbarItem(id: "Delete", placement: .bottomBar) {
                     Button("Delete") {
                         self.canvanController.deleteCanvan()
+                        self.presentationMode.wrappedValue.dismiss()
                     }.foregroundColor(.red)
                 }
             }

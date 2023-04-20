@@ -19,38 +19,44 @@ struct DoneView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack(){
                 ScrollView{
                     ForEach(0..<canvanController.DoneCanvans().count, id: \.self) {
                         index in
-                        NavigationLink {
-                            CanvanDetailView(canvan: canvanController.DoneCanvans()[index], canvanController: canvanController)
-                        } label: {
-                            HStack(alignment: .center) {
-                                Text(canvanController.DoneCanvans()[index].title)
-                                Spacer()
-                                Text("\(canvanController.DoneCanvans()[index].priority)")
+                        HStack {
+                            Text(canvanController.DoneCanvans()[index].title)
+                                .bold()
+                            NavigationLink {
+                                CanvanDetailView(canvan: canvanController.DoneCanvans()[index], canvanController: canvanController)
+                            } label: {
+                                Image(systemName: "info.bubble")
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .padding()
+                        .background(canvanController.DoneCanvans()[index].isSelected ? .cyan : .gray)
+                        .border(canvanController.DoneCanvans()[index].isSelected ? .cyan : .gray , width: 2)
+                        .foregroundColor(canvanController.DoneCanvans()[index].priority == 0 ? .black : .red)
+                        .cornerRadius(10)
+                        .aspectRatio(1.0,contentMode: .fit)
+                        .onTapGesture {
+                            if canvanController.index != nil {
+                                canvanController.canvanItems[self.canvanController.index!].isSelected = false
+                            }
+                            canvanController.setCanvan(canvanController.DoneCanvans()[index].id)
+                            canvanController.canvanItems[self.canvanController.index!].isSelected = true
+                            print(canvanController.index!)
                         }
                     }
-                }
                 }
             }
             .navigationTitle("Done")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(id: "Add", placement: .bottomBar) {
-                    Button("+ Done 추가하기") {
-                        showingAlert = true
-                    }.alert("Title", isPresented: $showingAlert) {
-                        TextField("TitleField", text: $newTitle)
-                        TextField("DescriptionField", text: $newDescription)
-                        Button("칸반생성") {
-                            canvanController.createCanvan(title: self.newTitle, description: self.newDescription, field: .Done)
-                            newTitle = ""
-                            newDescription = ""
-                        }
-                        Button("취소") {
-                            print("취소눌러짐")
+                    HStack {
+                        Button("Previous") {
+                            canvanController.previousCanvan()
                         }
                     }
                 }

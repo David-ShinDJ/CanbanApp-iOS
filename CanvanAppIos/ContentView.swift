@@ -11,16 +11,36 @@ import UniformTypeIdentifiers
 
 struct ContentView: View {
     @StateObject var canvanController:CanvanController = CanvanController()
-    
+    @State var newTitle:String = ""
+    @State var newDescription:String = ""
+    @State var showingAlert:Bool = false
     var body: some View {
-        VStack {
-   
-                BacklogView(canvanController: canvanController)
-                    .navigationBarTitleDisplayMode(.inline)
-                InProgressView(canvanController: canvanController)
-                    .navigationBarTitleDisplayMode(.inline)
-                DoneView(canvanController: canvanController)
-                    .navigationBarTitleDisplayMode(.inline)
+        NavigationView {
+            VStack {
+                    BacklogView(canvanController: canvanController)
+                        .navigationBarTitleDisplayMode(.inline)
+                    InProgressView(canvanController: canvanController)
+                        .navigationBarTitleDisplayMode(.inline)
+                    DoneView(canvanController: canvanController)
+                        .navigationBarTitleDisplayMode(.inline)
+            }.toolbar {
+                ToolbarItem(id: "Add", placement: .navigationBarTrailing) {
+                    Button("+ 칸반추가") {
+                        showingAlert = true
+                    }.alert("Title", isPresented: $showingAlert) {
+                        TextField("TitleField", text: $newTitle)
+                        TextField("DescriptionField", text: $newDescription)
+                        Button("칸반생성") {
+                            canvanController.createCanvan(title: self.newTitle, description: self.newDescription, field: .Backlog)
+                            newTitle = ""
+                            newDescription = ""
+                        }
+                        Button("취소") {
+                            print("취소눌러짐")
+                        }
+                    }
+                }
+            }
         }
     }
 }

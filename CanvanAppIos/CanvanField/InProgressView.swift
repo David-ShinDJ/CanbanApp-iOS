@@ -12,45 +12,50 @@ import SwiftUI
 struct InProgressView: View {
     
     @StateObject var canvanController:CanvanController
-    @State var newTitle:String = ""
-    @State var newDescription:String = ""
-    @State var canvanIsSelected:Bool = false
-    @State var showingAlert:Bool = false
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack(){
                 ScrollView{
                     ForEach(0..<canvanController.inprogressCanvans().count, id: \.self) {
                         index in
-                        NavigationLink {
-                            CanvanDetailView(canvan: canvanController.inprogressCanvans()[index], canvanController: canvanController)
-                        } label: {
-                            HStack(alignment: .center) {
-                                Text(canvanController.inprogressCanvans()[index].title)
-                                Spacer()
-                                Text("\(canvanController.inprogressCanvans()[index].priority)")
+                        HStack {
+                            Text(canvanController.inprogressCanvans()[index].title)
+                                .bold()
+                            NavigationLink {
+                                CanvanDetailView(canvan: canvanController.inprogressCanvans()[index], canvanController: canvanController)
+                            } label: {
+                                Image(systemName: "info.bubble")
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        .padding()
+                        .background(canvanController.inprogressCanvans()[index].isSelected ? .cyan : .gray)
+                        .border(canvanController.inprogressCanvans()[index].isSelected ? .cyan : .gray , width: 2)
+                        .foregroundColor(canvanController.inprogressCanvans()[index].priority == 0 ? .black : .red)
+                        .cornerRadius(10)
+                        .aspectRatio(1.0,contentMode: .fit)
+                        .onTapGesture {
+                            if canvanController.index != nil {
+                                canvanController.canvanItems[self.canvanController.index!].isSelected = false
+                            }
+                            canvanController.setCanvan(canvanController.inprogressCanvans()[index].id)
+                            canvanController.canvanItems[self.canvanController.index!].isSelected = true
+                            print(canvanController.index!)
                         }
                     }
-                }
                 }
             }
             .navigationTitle("InProgress")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(id: "Add", placement: .bottomBar) {
-                    Button("+ InProgress 추가하기") {
-                        showingAlert = true
-                    }.alert("Title", isPresented: $showingAlert) {
-                        TextField("TitleField", text: $newTitle)
-                        TextField("DescriptionField", text: $newDescription)
-                        Button("칸반생성") {
-                            canvanController.createCanvan(title: self.newTitle, description: self.newDescription, field: .Inprogress)
-                            newTitle = ""
-                            newDescription = ""
+                ToolbarItem(id: "CanvanOption", placement: .bottomBar) {
+                    HStack {
+                        Button("Previous") {
+                            canvanController.previousCanvan()
                         }
-                        Button("취소") {
-                            print("취소눌러짐")
+                        Button("Next") {
+                            canvanController.nextCanvan()
                         }
                     }
                 }
