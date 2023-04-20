@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CanvanDetailView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let canvan:Canvan
     
@@ -17,25 +18,59 @@ struct CanvanDetailView: View {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: canvan.date)
     }
+    @State var newDescription:String = ""
+    @State var newPriority:Int = 0
+    @StateObject var canvanController:CanvanController
+    let step = 1
+    let range = 0...1
+    
     var body: some View {
-        VStack(alignment:.leading,spacing:20) {
-            Text(canvan.title)
-                .font(.largeTitle)
-                .padding()
-            Text(canvan.description)
-                .font(.body)
-                .frame(alignment: .center)
-            Spacer()
-            Text("Priority \(canvan.priority)")
-            Text("Date:\(dateString)")
-                .font(.headline)
+        NavigationView {
+            VStack(alignment: .leading) {
+                ScrollView {
+                    HStack {
+                        Spacer()
+                        Text(canvan.title)
+                            .font(.largeTitle)
+                            .foregroundColor(.blue)
+                            .padding()
+                        Spacer()
+                    }
+                    TextEditor(text: $newDescription)
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Stepper(value: $newPriority,
+                                in: range,
+                                step: step) {
+                            Text("우선순위 \(newPriority)")
+                        }
+                            .padding(10)
+                        Text("생성날짜:\(dateString)")
+                            .font(.headline)
+                        Spacer()
+                    }
+                }
+            }
+            .toolbar {
+                ToolbarItem(id: "Update",placement: .bottomBar) {
+                    Button("Update") {
+                        self.canvanController.updateCanvan(description: newDescription, priority: newPriority)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                ToolbarItem(id: "Delete", placement: .bottomBar) {
+                    Button("Delete") {
+                        self.canvanController.deleteCanvan()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }.foregroundColor(.red)
+                }
+            }
+            .onAppear {
+                self.newDescription = canvan.description
+                self.canvanController.setCanvan(self.canvan.id)
+            }
         }
     }
 }
 
-struct CanvanDetailView_Previews: PreviewProvider {
-    static let canvanSample = Canvan(title: "칸반제목", description: "칸반의내용을 담고있다 긴글............", priority: 1, date: Date())
-    static var previews: some View {
-        CanvanDetailView(canvan: canvanSample)
-    }
-}
