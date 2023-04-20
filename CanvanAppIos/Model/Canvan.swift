@@ -12,15 +12,15 @@ import Foundation
 // 또한 Swift에서 값 타입과 reference 타입의 차이점을 이해하고, 이를 이용하여 데이터 모델링을 잘 해야 합니다. 값 타입은 값이 복사되어 전달되지만, reference 타입은 참조가 전달됩니다.
 // Codable 하는경우 안에 다른 enum, OR Json 참조를 하게되는경우 새로운 해당 모델도 Decodeable 할수있게 모델의 확장이 필요하다
 
+enum Field: String, Codable {
+    case Backlog
+    case Inprogress
+    case Done
+}
 
 
 struct Canvan: Identifiable, Codable {
     
-    enum Field: String, Codable {
-        case Backlog
-        case Inprogress
-        case Done
-    }
     
     let id: UUID
     let title: String
